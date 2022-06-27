@@ -17,7 +17,21 @@ app.post('/', function(req, res){
     let num2 = Number(req.body.num2);
     let result = num1 + num2;
 
-    res.send("Итог будет равен" + result)
+    res.send("Итог будет равен " + result)
+})
+
+app.get("/bmicalculator", function(req, res){
+    res.sendFile(__dirname + "/bmiCalculator.html");
+});
+
+app.post('/bmicalculator', function(req, res){
+    
+    let height = parseFloat(req.body.height);
+    let weight = parseFloat(req.body.weight);
+    
+    let bmi = weight / (height * height);
+
+    res.send("Ваш BMI  равен " + bmi)
 })
 app.listen(3000, function(){
     console.log("Server startedon port 3000");
